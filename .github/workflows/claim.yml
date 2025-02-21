@@ -1,28 +1,25 @@
 name: Monad Faucet Claim
 
-# 每12小时跑一次（UTC时间）
 on:
   schedule:
-    - cron: "0 */12 * * *"  # 每天 0:00 和 12:00 UTC
+    - cron: "0 */12 * * *"  # 每12小时运行一次
+  workflow_dispatch:  # 手动触发选项
 
 jobs:
   claim:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.10"
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
 
-    - name: Install dependencies
-      run: pip install requests
+      - name: Install dependencies
+        run: pip install requests
 
-    - name: Run faucet script
-      run: python monad_faucet.py
-on:
-  schedule:
-    - cron: "0 */12 * * *"
-  workflow_dispatch:  # 加这行
+      - name: Run faucet script
+        run: python monad_faucet.py
+
