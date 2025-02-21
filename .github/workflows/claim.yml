@@ -22,3 +22,7 @@ jobs:
 
     - name: Run faucet script
       run: python monad_faucet.py
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:  # 加这行
